@@ -50,7 +50,7 @@ if($_SESSION["emailid"]=="")
   
      function del()
       {
-        return confirm("Are you sure you want to delete this User?");
+        return confirm("Are you sure you want to delete this FeedBack?");
       }
 
 
@@ -168,7 +168,7 @@ if($_SESSION["emailid"]=="")
                 </tr>
                 </tfoot>
               </table>
-			  			  <input class="btn btn-danger"   type="submit" value="Delete All" name="delete"/>
+			  			  <input class="btn btn-danger" onclick="return del();"  type="submit" value="Delete All" name="delete"/>
 						  </form>
             </div>
             <!-- /.box-body -->

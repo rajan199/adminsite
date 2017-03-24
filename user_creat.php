@@ -6,14 +6,98 @@ if($_SESSION["emailid"]=="")
 	header('location:index.php');
 }
 
-
-
 ?>
 
 
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+
+
+	$(document).ready(function(){
+//alert("hii");
+$("#test").on('blur',function() {
+    var val = $("#test").val();
+	var len= $("#test").val().length;
+		if(len < 10){
+	    alert("Mobile number length should be 10");
+    	$("#test").val("");
+        $("#test").focus();
+	}
+
+   else if (parseInt(val) < 0 || isNaN(val)) {
+        alert("Only numbers are allowed");
+        $("#test").val("");
+        $("#test").focus();
+    }
+});
+
+
+
+$("#zip1").on('blur',function() {
+    var val = $("#zip1").val();
+	var len= $("#zip1").val().length;
+	if(len < 6){
+	    alert("Zipcode length should be 6");
+    	 $("#zip1").val("");
+        $("#zip1").focus();
+    
+	}
+    else if (parseInt(val) < 0 || isNaN(val)) {
+        alert("Only  numbers are allowed");
+        $("#zip1").val("");
+        $("#zip1").focus();
+    
+	}
+});
+
+
+
+$('#pass1').on('blur', function(){
+    if(this.value.length < 4){ // checks the password value length
+       alert('password should not be empty/length must be between 5 to 12');
+       $('#pass1').val(""); // focuses the current field.
+       
+	   $('#pass1').focus(); // focuses the current field.
+      // return false; // stops the execution.
+    }
+});
+
+
+
+
+
+
+});
+
+$(document).ready(function(e) {
+    $('#btn').click(function() {
+        var sEmail = $('#mail').val();
+        if ($.trim(sEmail).length == 0) {
+            alert('Please enter valid email address');
+            e.preventDefault();
+        }
+        if (validateEmail(sEmail)) {
+           // alert('Email is valid');
+        }
+        else {
+            alert('Invalid Email Address');
+            e.preventDefault();
+        }
+    });
+});
+
+function validateEmail(sEmail) {
+    var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    if (filter.test(sEmail)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+</script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Jay Jalaram Medicine</title>
@@ -93,7 +177,7 @@ include 'header.php';
               <div class="box-body">
                 <div class="form-group">
                   <label >Enter Email Id</label>
-                  <input type="text" class="form-control" name="txt_email" placeholder="Enter Email Id" style="width: 550px; height: 40px;" required>
+                  <input type="text" id="mail" class="form-control" name="txt_email" placeholder="Enter Email Id" style="width: 550px; height: 40px;" required>
                 </div>
 				<div class="form-group">
                   <label >Enter User Name</label>
@@ -102,7 +186,7 @@ include 'header.php';
 				
 				<div class="form-group">
                   <label >Enter Password</label>
-                  <input type="password" class="form-control" name="txt_pass" placeholder="Enter Password" style="width: 550px; height: 40px;" required>
+                  <input type="password" id="pass1" class="form-control" name="txt_pass" placeholder="Enter Password" style="width: 550px; height: 40px;" required>
                 </div>
 				
 				<div class="form-group">
@@ -133,14 +217,14 @@ include 'header.php';
 				
 				<div class="form-group">
                   <label >Enter Zipcode</label>
-                  <input type="text" class="form-control" maxlength='6' name="txt_zip" placeholder="Enter Zipcode" style="width: 550px; height: 40px;" required>
+                  <input type="text" class="form-control" maxlength='6' name="txt_zip" placeholder="Enter Zipcode" id="zip1" style="width: 550px; height: 40px;" required>
 				                 
 				 </div>
 				
 				
 				<div class="form-group">
                   <label >Enter Mobile Number</label>
-                  <input type="text" class="form-control" name="txt_mob" maxlength='10' placeholder="Enter Mobile number" style="width: 550px; height: 40px;" required>
+                  <input type="text" class="form-control" name="txt_mob" maxlength='10' id="test" placeholder="Enter Mobile number" style="width: 550px; height: 40px;" required>
 				                 
 				 </div>
 				
@@ -156,15 +240,15 @@ include 'header.php';
 				 </div>
 				
 				
-				
+				<!--
 				<div class="form-group">
                   <label >Enter the Shipping Address</label>
 
 				<textarea name="txtship" col="5" class="form-control" style="width: 550px;height: 60px;" placeholder="Enter Shipping Address" required></textarea>
 				                 
 				 </div>
-		
-		
+		-->
+		<!--
 			<div class="form-group">
                   <label >Select the Type of User</label>
 
@@ -174,16 +258,15 @@ include 'header.php';
 
 
 </select>                 
-				 </div>
+				 </div> -->
 				
 		
 	
 		        
               </div>
-              <!-- /.box-body -->
-
+              
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary" name="ins_user">Add</button>
+                <button type="submit" id="btn" class="btn btn-primary" name="ins_user">Add</button>
               </div>
 			  <?php 
 			  if(isset($_POST["ins_user"]))
@@ -196,14 +279,14 @@ include 'header.php';
 			  $zip=$_POST["txt_zip"];
 			  $mob=$_POST["txt_mob"];
 			  $gen=$_POST["txt_gen"];
-			  $ship=$_POST["txtship"];
-			  $type=$_POST["txt_type"];
+			  //$ship=$_POST["txtship"];
+			  //$type=$_POST["txt_type"];
 			  
 			    $date=date("d/m/y");
 
 			  $con=mysql_connect("localhost","root","");
 			  mysql_select_db("medicine",$con);
-			  $res=mysql_query("Insert into user_tbl values('$email','$name','$pass','$add','$city','$zip','$mob','$gen','$ship','$type','true','Null','$date')",$con);
+			  $res=mysql_query("Insert into user_tbl values('$email','$name','$pass','$add','$city','$zip','$mob','$gen','NULL','admin','true','Null','$date')",$con);
 			  
 			  if($res==1)
 			  {

@@ -5,9 +5,6 @@ if($_SESSION["emailid"]=="")
 {
 	header('location:index.php');
 }
-
-
-
 ?>
 
 
@@ -28,6 +25,18 @@ if($_SESSION["emailid"]=="")
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  
+   <script type="text/javascript">
+  
+     function del()
+      {
+        return confirm("Are you sure you want to delete this Prescription?");
+      }
+
+
+  
+  </script>
+  
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -105,6 +114,7 @@ if($_SESSION["emailid"]=="")
                 <thead>
                 <tr>
 				<th>Select</th>
+				<th>Order Id </th>
                   <th>Email Id</th>
                   <th>Prescription Image</th>
 				  <th>Delete</th>
@@ -115,7 +125,7 @@ if($_SESSION["emailid"]=="")
 				<?php 
 				 $con=mysql_connect("localhost","root","");
                         mysql_select_db("medicine",$con);
-                        $res=mysql_query("select * from prescription_tbl");
+                        $res=mysql_query("select p.*,o.* from prescription_tbl as p,order_tbl as o where p.email_id=o.email_id");
                         while($row=mysql_fetch_array($res,MYSQL_ASSOC))
                         {
                           echo '<tr>';
@@ -126,6 +136,7 @@ if($_SESSION["emailid"]=="")
 							<td>	  <input type="checkbox" class="checkbox"  name="chk[]"  value="<?php echo $row["prescription_id"]; ?>" style="opacity:1;"/></td>
 				<?php
 						  
+						echo '<td>'.$row["order_id"].'</td>';	
 						  echo '<td>'.$row["email_id"].'</td>';
 						  
 						  echo '<td>'; 

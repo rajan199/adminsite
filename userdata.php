@@ -130,7 +130,7 @@ if($_SESSION["emailid"]=="")
 						 
               <table id="example" class="table table-bordered table-striped">
 			<a href="user_creat.php"><button type="button" class="btn btn-danger
-" data-toggle="tooltip" data-placement="right" title="Create New Catagory" style="margin-left: 40px;margin-top: 15px;"><span class="glyphicon glyphicon-plus-sign"></button></a>
+" data-toggle="tooltip" data-placement="right" title="Create New User" style="margin-left: 40px;margin-top: 15px;"><span class="glyphicon glyphicon-plus-sign"></button></a>
 <br/><br/>
              
 

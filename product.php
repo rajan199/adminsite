@@ -33,12 +33,12 @@ if($_SESSION["emailid"]=="")
   
      function del()
       {
-        return confirm("Are you sure you want to delete this User?");
+        return confirm("Are you sure you want to delete this Product?");
       }
 
 	  function edit()
       {
-        return confirm("Are you sure you want to Edit this catagory?");
+        return confirm("Are you sure you want to Edit this Product?");
       }
 
   
@@ -117,7 +117,7 @@ if($_SESSION["emailid"]=="")
 			<form method="post" onSubmit="return del();" action="mul_del_product.php">
               <table id="example" class="table table-bordered table-striped">
                 <a href="product_add.php"><button type="button" class="btn btn-danger
-" data-toggle="tooltip" data-placement="right" title="Create New Catagory" style="margin-left: 40px;margin-top: 15px;"><span class="glyphicon glyphicon-plus-sign"></button></a>
+" data-toggle="tooltip" data-placement="right" title="Create New Product" style="margin-left: 40px;margin-top: 15px;"><span class="glyphicon glyphicon-plus-sign"></button></a>
 <br/><br/>
 				<thead>
                 <tr>
@@ -166,7 +166,7 @@ if($_SESSION["emailid"]=="")
                 </tr>
                 </tfoot>
               </table>
- <input class="btn btn-danger"   type="submit" value="Delete All" name="delete"/>
+ <input class="btn btn-danger"  onclick="return del();" type="submit" value="Delete All" name="delete"/>
                        
 		  </div>
             <!-- /.box-body -->

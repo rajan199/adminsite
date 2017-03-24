@@ -28,6 +28,17 @@ if($_SESSION["emailid"]=="")
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+   <script type="text/javascript">
+  
+     function del()
+      {
+        return confirm("Are you sure you want to delete this Question?");
+      }
+
+
+  
+  </script>
+  
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">

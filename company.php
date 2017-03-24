@@ -33,11 +33,11 @@ if($_SESSION["emailid"]=="")
   <script type="text/javascript">
       function del()
       {
-        return confirm("Are you sure you want to delete this catagory?");
+        return confirm("Are you sure you want to delete this Company?");
       }
 	  function edit()
       {
-        return confirm("Are you sure you want to Edit this catagory?");
+        return confirm("Are you sure you want to Edit this Company?");
       }
 	  </script>
 </head>
@@ -113,7 +113,7 @@ if($_SESSION["emailid"]=="")
               <table id="example" class="table table-bordered table-striped">
 			  
 			  <a href="company_creat.php"><button type="button" class="btn btn-danger
-" data-toggle="tooltip" data-placement="right" title="Create New Catagory" style="margin-left: 40px;margin-top: 15px;"><span class="glyphicon glyphicon-plus-sign"></button></a>
+" data-toggle="tooltip" data-placement="right" title="Create New Company" style="margin-left: 40px;margin-top: 15px;"><span class="glyphicon glyphicon-plus-sign"></button></a>
 <br/><br/>
 
                 <thead>
