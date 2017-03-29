@@ -125,7 +125,7 @@ if($_SESSION["emailid"]=="")
 				<?php 
 				 $con=mysql_connect("localhost","root","");
                         mysql_select_db("medicine",$con);
-                        $res=mysql_query("select p.*,o.* from prescription_tbl as p,order_tbl as o where p.email_id=o.email_id");
+                        $res=mysql_query("select p.*,o.* from prescription_tbl as p,order_tbl as o where p.email_id=o.email_id  order by o.order_id desc",$con);
                         while($row=mysql_fetch_array($res,MYSQL_ASSOC))
                         {
                           echo '<tr>';

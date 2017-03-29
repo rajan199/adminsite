@@ -411,7 +411,7 @@ $cnt3=mysql_num_rows($res3);
 <?php 
 				  $con=mysql_connect("localhost","root","");
                         mysql_select_db("medicine",$con);
-                        $res=mysql_query("select o.*,p.* from order_tbl as o,product_tbl as p where o.order_date='$date' and o.status='buy' order by o.order_id LIMIT 0,$cnt");
+                        $res=mysql_query("select o.*,p.* from order_tbl as o,product_tbl as p where o.product_id=p.product_id and o.order_date='$date' and o.status='buy' order by o.order_id LIMIT 0,$cnt");
 						
 						while($row=mysql_fetch_array($res,MYSQL_ASSOC))
                         {

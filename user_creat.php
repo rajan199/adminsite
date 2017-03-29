@@ -12,11 +12,21 @@ if($_SESSION["emailid"]=="")
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Jay Jalaram Medicine</title>
+  <!-- Tell the browser to be responsive to screen width -->
+ <?php
+  include 'links.php';
+  
+  ?>
+  
+  
+  <script type="text/javascript">
 
 
-	$(document).ready(function(){
-//alert("hii");
+		$(document).ready(function(){
+	//	alert("hii");
 $("#test").on('blur',function() {
     var val = $("#test").val();
 	var len= $("#test").val().length;
@@ -97,15 +107,138 @@ function validateEmail(sEmail) {
         return false;
     }
 }
+
+
+
+
+
+
+
+
+
+	
+	function allLetter(uname)
+{
+	var letters=/^[A-Za-z]+$/;
+	if(uname.value.match(letters))
+	{
+			return true;
+	}
+	else
+	{
+			uname.focus();
+			
+			alert('username must have alphabetic charcters only');
+			return false;
+	}
+}
+
+
+
+
+
+function passid_validation(passid)
+{
+	var pl=passid.value.length;
+	var mx=12;
+	var my=5;
+	if(pl==0 || pl<=my )
+	{
+		alert("password should not be empty/length must be between "+5+" to "+12);
+		passid.focus();
+		return false;
+	}
+	return true;
+}
+
+function allnumeric(unum)
+{
+		var number=/^[0-9]+$/;
+		if(unum.value.match(number))
+		{
+			return true;
+		}
+		else
+		{
+				alert('Mobile number must have numeric characters only');
+				unum.focus();
+				return false;
+				
+		}
+}
+
+function mess()
+{
+	alert("enter correct captcha code");
+
+}
+
+function allzip(uzip)
+{
+		var numbers=/^[0-9]+$/;
+		var len=uzip.value.length;
+		if(len<6)
+		{
+				alert('ZIP code must be of length 6');
+				
+			uzip.value = "";
+		}
+		else if(uzip.value.match(numbers))
+		{
+			return true;
+		}
+		else
+		{
+				alert('ZIP code must have numeric characters only');
+				uzip.value = " ";				
+				uzip.focus();
+				
+				return false;
+				
+		}
+}
+
+
+
+
+
+
+
+
+
+function allmob(uzip)
+{
+		var numbers=/^[0-9]+$/;
+		var len=uzip.value.length;
+		if(len<10)
+		{
+				alert('Mobile number must be of length 10');
+				uzip.value = " ";				
+				
+		}
+		if(uzip.value.match(numbers))
+		{
+			return true;
+		}
+		else
+		{
+				alert('Mobile number must have numeric characters only');
+				uzip.focus();
+				uzip.value = " ";				
+				
+				return false;
+				
+		}
+}
+
+
+
+
 </script>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Jay Jalaram Medicine</title>
-  <!-- Tell the browser to be responsive to screen width -->
- <?php
-  include 'links.php';
-  
-  ?>
+
+
+
+
   
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -169,7 +302,7 @@ include 'header.php';
 
 <div class="box box-primary">
             <div class="box-header with-border">
-              <h1>Create User or Admin Form</h1>
+              <h1>Create Admin Form</h1>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -177,7 +310,7 @@ include 'header.php';
               <div class="box-body">
                 <div class="form-group">
                   <label >Enter Email Id</label>
-                  <input type="text" id="mail" class="form-control" name="txt_email" placeholder="Enter Email Id" style="width: 550px; height: 40px;" required>
+                  <input type="email" id="mail" class="form-control" name="txt_email" placeholder="Enter Email Id" style="width: 550px; height: 40px;" required>
                 </div>
 				<div class="form-group">
                   <label >Enter User Name</label>
@@ -186,7 +319,7 @@ include 'header.php';
 				
 				<div class="form-group">
                   <label >Enter Password</label>
-                  <input type="password" id="pass1" class="form-control" name="txt_pass" placeholder="Enter Password" style="width: 550px; height: 40px;" required>
+                  <input type="password" id="pass1" class="form-control" onblur="return passid_validation(txt_pass);" name="txt_pass" placeholder="Enter Password" style="width: 550px; height: 40px;" required>
                 </div>
 				
 				<div class="form-group">
@@ -217,14 +350,14 @@ include 'header.php';
 				
 				<div class="form-group">
                   <label >Enter Zipcode</label>
-                  <input type="text" class="form-control" maxlength='6' name="txt_zip" placeholder="Enter Zipcode" id="zip1" style="width: 550px; height: 40px;" required>
+                  <input type="text" class="form-control" onblur="return allzip(txt_zip);" maxlength='6' name="txt_zip" placeholder="Enter Zipcode" id="zip1" style="width: 550px; height: 40px;" required>
 				                 
 				 </div>
 				
 				
 				<div class="form-group">
                   <label >Enter Mobile Number</label>
-                  <input type="text" class="form-control" name="txt_mob" maxlength='10' id="test" placeholder="Enter Mobile number" style="width: 550px; height: 40px;" required>
+                  <input type="text" class="form-control" name="txt_mob" onblur="return allmob(txt_mob);" maxlength='10' id="test" placeholder="Enter Mobile number" style="width: 550px; height: 40px;" required>
 				                 
 				 </div>
 				
