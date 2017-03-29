@@ -105,76 +105,35 @@ include 'header.php';
                         mysql_select_db("medicine",$con);
                         $res=mysql_query("select * from user_tbl where email_id='$eid' and type='admin'");
 						while($row=mysql_fetch_array($res,MYSQL_ASSOC))
-                        {
-							$uname=$row["user_name"];
-							$pass=$row["password"];
-							$add=$row["address"];
-              $area=$row["area"];
-				      $zip=$row["zipcode"];			
-              $mno=$row["mobile_no"];
-              $gen=$row["gender"];
+            {
+							
 						}
 			?>
-            <form method="post" action="edit_admin.php?id=<?php echo $eid;?>" role="form">
+            <form method="post" action="changepass.php?id=<?php echo $eid;?>" role="form">
 			
               <div class="box-body">
 			           
                  <div class="form-group">
-                  <label>Edit User Name</label>
-                  <input type="text" class="form-control" name="txt_comid" value="<?php echo $uname;?>">
+                  <label>Enter Old Password</label>
+                  <input type="password" class="form-control" name="txtold">
+                </div>
+
+              <div class="form-group">
+                  <label>Enter New Password</label>
+                  <input type="password" class="form-control" name="txtnew">
                 </div>
 
                 <div class="form-group">
-                    <label >Edit Address</label>
-                    <textarea name="txtadd" col="5" class="form-control" required><?php echo $add;?></textarea>     
-                </div>
-                
-              <div>
-                  <b><span style="color: black;font-size:15px;">Area</span></b>
-          
-                  <select name="txtcity" class="form-control" autocomplete="off">
-                    <option value="Kankaria" <?php if($area=="Kankaria"){echo 'selected';} ?>>Kankaria</option>
-                    <option value="Maninagar" <?php if($area=="Maninagar"){echo 'selected';}?>>Maninagar</option>
-                    <option value="Jaymala"<?php if($area=="Jaymala"){echo 'selected';} ?>>Jaymala</option>
-                    <option value="Isanpur" <?php if($area=="Isanpur"){echo 'selected';} ?>>Isanpur</option>
-                    <option value="Ghodasar" <?php if($area=="Ghodasar"){echo 'selected';} ?>>Ghodasar</option>
-                    <option value="Dakshini" <?php if($area=="Dakshini"){echo 'selected';} ?>>Dakshini</option>
-                    <option value="Khokhara" <?php if($area=="Khokhara"){echo 'selected';} ?>>Khokhara</option>
-                    <option value="Raipur" <?php if($area=="Raipur"){echo 'selected';} ?>>Raipur</option>
-                    <option value="Bhulabhai" <?php if($area=="Bhulabhai"){echo 'selected';} ?>>Bhulabhai</option>
-                  </select>
-          </div>
-
-<div class="form-group">
-                  <label >Enter Zipcode</label>
-                  <input type="text" class="form-control" maxlength='6' name="txt_zip" placeholder="Enter Zipcode" id="zip1" value="<?php echo $zip;?>" required>
-                         
-         </div>
-        
-        
-        <div class="form-group">
-                  <label >Enter Mobile Number</label>
-                  <input type="text" value="<?php echo $mno; ?>" class="form-control" name="txt_mob" maxlength='10' id="test" placeholder="Enter Mobile number" required>
-                         
-         </div>
-        
-      <div class="form-group">
-                  <label >Select the Gender</label>
-
-        <select name="txt_gen" class="form-control" autocomplete="off" required>
-<option value="M" <?php if($gen=="M"){echo 'selected';} ?> >Male</option>
-<option value="F" <?php if($gen=="F"){echo 'selected';} ?> >Female</option>
-
-
-</select>                 
-         </div>
+                  <label>Enter Retype New Password</label>
+                  <input type="password" class="form-control" name="txtnewre">
+                </div>               
         
               </div>
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary" name="insup">Update</button>
-                <a href="changepassword.php?id=<?php echo $eid;?>" role="button" class="btn btn-danger">Change Password</a>
+                <button type="submit" class="btn btn-primary" name="insup">Change Password</button>
+             
               </div>
 			  
             </form>
