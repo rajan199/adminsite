@@ -98,18 +98,7 @@ include 'header.php';
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-			<?php 
-			$eid=$_REQUEST["id"];
-			
-			 $con=mysql_connect("localhost","root","");
-                        mysql_select_db("medicine",$con);
-                        $res=mysql_query("select * from user_tbl where email_id='$eid' and type='admin'");
-						while($row=mysql_fetch_array($res,MYSQL_ASSOC))
-            {
-							
-						}
-			?>
-            <form method="post" action="changepass.php?id=<?php echo $eid;?>" role="form">
+			    <form method="post" action="changepass.php?id=<?php echo $eid;?>" role="form">
 			
               <div class="box-body">
 			           
