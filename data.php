@@ -171,8 +171,10 @@ width: 360px;"></td>';
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b></b>     </div>
-    <strong> <a href="http://almsaeedstudio.com"></a></strong>   </footer>
+<b> All rights reserved. </b>
+	  </div>
+    <strong>Copyright &copy; 2016-2017 Jay Jalaram Medicine</strong>
+	</footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
