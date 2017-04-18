@@ -17,7 +17,7 @@
 				
 				 }
 				 if($res==1){
-					 header('location:category.php');
+					 header('location:data.php');
 
 				 }
 			 }

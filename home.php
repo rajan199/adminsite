@@ -444,7 +444,10 @@ $cnt3=mysql_num_rows($res3);
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    
+    <div class="pull-right hidden-xs">
+     <b> All rights reserved. </b>
+    </div>
+     <strong>Copyright &copy; 2016-2017 Jay Jalaram Medicine</strong>
   </footer>
 
   <!-- Control Sidebar -->

@@ -126,6 +126,7 @@ if($_SESSION["emailid"]=="")
 				 $con=mysql_connect("localhost","root","");
                         mysql_select_db("medicine",$con);
                         $res=mysql_query("select p.*,o.* from prescription_tbl as p,order_tbl as o where p.email_id=o.email_id  order by o.order_id desc",$con);
+        //                $res=mysql_query("select p.*,o.* from prescription_tbl as p,order_tbl as o where o.email_id=p.email_id group by p.email_id order by o.order_id desc");
                         while($row=mysql_fetch_array($res,MYSQL_ASSOC))
                         {
                           echo '<tr>';
@@ -171,8 +172,10 @@ width: 360px;"></td>';
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b></b>     </div>
-    <strong> <a href="http://almsaeedstudio.com"></a></strong>   </footer>
+<b> All rights reserved. </b>
+	  </div>
+    <strong>Copyright &copy; 2016-2017 Jay Jalaram Medicine</strong>
+	</footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

@@ -219,7 +219,13 @@ if($_SESSION["emailid"]=="")
                   </div>
                 </div>
               </div>
- 
+			  
+ <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+     <b> All rights reserved. </b>
+    </div>
+     <strong>Copyright &copy; 2016-2017 Jay Jalaram Medicine</strong>
+  </footer>
  
  
  
