@@ -16,7 +16,7 @@ if($_SESSION["emailid"]=="")
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Jay Jalaram Medicine</title>
+  <title>Recipe Express</title>
   <!-- Tell the browser to be responsive to screen width -->
   <?php
   include 'links.php';
@@ -54,16 +54,14 @@ include 'header.php';
           </a>
           <ul class="treeview-menu">
         <li class="active"><a href="userdata.php"><i class="fa fa-circle-o"></i> User Table</a></li>
-            <li class="active"><a href="category.php"><i class="fa fa-circle-o"></i> Category Table</a></li>
+            <li class="active"><a href="recipe.php"><i class="fa fa-circle-o"></i> Recipe Table</a></li>
+			 <li class="active"><a href="order.php"><i class="fa fa-circle-o"></i> Order Table</a></li>
 			 <li class="active"><a href="question.php"><i class="fa fa-circle-o"></i> Question Table</a></li>
-			 <li class="active"><a href="data.php"><i class="fa fa-circle-o"></i> Prescription Table</a></li>
-			 <li class="active"><a href="company.php"><i class="fa fa-circle-o"></i> Company Table</a></li>
 			 <li class="active"><a href="favourite.php"><i class="fa fa-circle-o"></i> Favourite Table</a></li>
 			 <li class="active"><a href="feedback.php"><i class="fa fa-circle-o"></i> FeedBack Table</a></li>
-			 <li class="active"><a href="order.php"><i class="fa fa-circle-o"></i> Order Table</a></li>
-			 <li class="active"><a href="product.php"><i class="fa fa-circle-o"></i> Product Table</a></li>
-          </ul>
+			      </ul>
         </li>
+		
     </section>
     
   </aside>
@@ -85,14 +83,14 @@ include 'header.php';
 
 <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Edit Category Form</h3>
+              <h3 class="box-title">Approval Form of Question</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
 			<?php 
 			$id=$_REQUEST["id"];
 			 $con=mysql_connect("localhost","root","");
-                        mysql_select_db("medicine",$con);
+                        mysql_select_db("racipe_database",$con);
                         $res=mysql_query("select * from question_tbl where question_id='$id'");
 						while($row=mysql_fetch_array($res,MYSQL_ASSOC))
                         {
@@ -136,7 +134,7 @@ include 'header.php';
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary" name="insup">Update Question</button>
+                <button type="submit" class="btn btn-primary" name="insup">Approve Question</button>
               </div>
 			  
             </form>
@@ -158,7 +156,7 @@ include 'header.php';
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.3.8
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright @Recipe Express <a href="http://almsaeedstudio.com"> </a>.</strong> All rights
     reserved.
   </footer>
 

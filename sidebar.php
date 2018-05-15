@@ -36,25 +36,17 @@
           </a>
           <ul class="treeview-menu">
 		  <li class="active"><a href="userdata.php"><i class="fa fa-circle-o"></i> User Table</a></li>
-		  <li class="active"><a href="category.php"><i class="fa fa-circle-o"></i> Category Table</a></li>
-		  <li class="active"><a href="question.php"><i class="fa fa-circle-o"></i> Question Table</a></li>
-            <li><a href="data.php"><i class="fa fa-circle-o"></i> Prescription Table</a></li>
-			 <li><a href="company.php"><i class="fa fa-circle-o"></i> Company Table</a></li>
-			  <li><a href="favourite.php"><i class="fa fa-circle-o"></i> Favourite Table</a></li>
+		  <li class="active"><a href="recipe.php"><i class="fa fa-circle-o"></i> Recipe Table</a></li>
+  <li><a href="order.php"><i class="fa fa-circle-o"></i> Order Table</a></li>
+					 
+		 <li class="active"><a href="question.php"><i class="fa fa-circle-o"></i> Question Table</a></li>
+             <li><a href="favourite.php"><i class="fa fa-circle-o"></i> Favourite Table</a></li>
 			  <li><a href="feedback.php"><i class="fa fa-circle-o"></i> FeedBack Table</a></li>
-			  <li><a href="order.php"><i class="fa fa-circle-o"></i> Order Table</a></li>
-			  <li><a href="product.php"><i class="fa fa-circle-o"></i> Product Table</a></li>
-          </ul>
+			  	 <li class="active"><a href="comment.php"><i class="fa fa-circle-o"></i> Comment Table</a></li>
+		
+			 </ul>
         </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>Reports</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <?php include 'reportslink.php'; ?>
-        </li>
+       
     <!-- /.sidebar -->
   </aside>
 

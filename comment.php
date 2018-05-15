@@ -11,14 +11,15 @@ if($_SESSION["emailid"]=="")
 ?>
 
 
+
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Jay Jalaram Medicine</title>
+  <title>Recipe Express</title>
   <!-- Tell the browser to be responsive to screen width -->
-  <?php
+<?php
   include 'links.php';
   
   ?>
@@ -29,13 +30,25 @@ if($_SESSION["emailid"]=="")
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  
+   <script type="text/javascript">
+  
+     function del()
+      {
+        return confirm("Are you sure you want to delete this comment?");
+      }
+
+
+  
+  </script>
+  
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
+
 <?php
-
-include 'header.php';
-
+  include 'header.php';
+  
 ?>
   <!-- Left side column. contains the logo and sidebar -->
   
@@ -54,16 +67,17 @@ include 'header.php';
           </a>
           <ul class="treeview-menu">
         <li class="active"><a href="userdata.php"><i class="fa fa-circle-o"></i> User Table</a></li>
-            <li class="active"><a href="category.php"><i class="fa fa-circle-o"></i> Category Table</a></li>
-			 <li class="active"><a href="question.php"><i class="fa fa-circle-o"></i> Question Table</a></li>
-			 <li class="active"><a href="data.php"><i class="fa fa-circle-o"></i> Prescription Table</a></li>
-			 <li class="active"><a href="company.php"><i class="fa fa-circle-o"></i> Company Table</a></li>
-			 <li class="active"><a href="favourite.php"><i class="fa fa-circle-o"></i> Favourite Table</a></li>
-			 <li class="active"><a href="feedback.php"><i class="fa fa-circle-o"></i> FeedBack Table</a></li>
+            <li class="active"><a href="recipe.php"><i class="fa fa-circle-o"></i> Recipe Table</a></li>
 			 <li class="active"><a href="order.php"><i class="fa fa-circle-o"></i> Order Table</a></li>
-			 <li class="active"><a href="product.php"><i class="fa fa-circle-o"></i> Product Table</a></li>
-          </ul>
+			 <li class="active"><a href="question.php"><i class="fa fa-circle-o"></i> Question Table</a></li>
+			  <li class="active"><a href="favourite.php"><i class="fa fa-circle-o"></i> Favourite Table</a></li>
+			  <li class="active"><a href="feedback.php"><i class="fa fa-circle-o"></i> FeedBack Table</a></li>
+			 <li class="active"><a href="comment.php"><i class="fa fa-circle-o"></i> Comment Table</a></li>
+			 
+			 </ul>
         </li>
+		
+       
     </section>
     
   </aside>
@@ -71,7 +85,14 @@ include 'header.php';
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    
+    <section class="content-header">
+      <h1>
+      Comment Table
+        
+      </h1>
+      
+    </section>
+ 
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -81,49 +102,44 @@ include 'header.php';
            
             <!-- /.box-header -->
             <div class="box-body">
-			
-
-<div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Create Company Form</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form method="post" role="form">
-              <div class="box-body">
-                <div class="form-group">
-                  <label >Enter Company Name</label>
-                  <input type="text" class="form-control" name="txt_comname" placeholder="Enter Company Name">
-                </div>
-				<div class="form-group">
-				<label >Enter Company Address</label>
-                  <textarea name="txtadd" col="5" class="form-control" placeholder="Enter Address" required></textarea>
-                </div>
-				<div class="form-group">
-                  <label >Enter Contact Number</label>
-                  <input type="number" class="form-control" name="txt_contact" placeholder="Enter Company Number">
-                </div>
+              <table id="example" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  
+				  <th>Comment</th>
+				  <th>Recipe name</th>
+				  <th>User name</th>
+				  <th>Action</th>
+				  
+                </tr>
+                </thead>
+                <tbody>
                 
-              </div>
-              <!-- /.box-body -->
-
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary" name="inscat">Insert Company</button>
-              </div>
-			  <?php 
-			  if(isset($_POST["inscat"]))
-			  {
-				  $cname=$_POST["txt_comname"];
-				  $add=$_POST["txtadd"];
-				  $cno=$_POST["txt_contact"];
-			  $con=mysql_connect("localhost","root","");
-			  mysql_select_db("medicine",$con);
-			  $res=mysql_query("Insert into company_tbl values(NULL,'$cname','$add','$cno')",$con);
-			  }
-			  ?>
-            </form>
-          </div>
-              
+				<?php 
+				 $con=mysql_connect("localhost","root","");
+                        mysql_select_db("racipe_database",$con);
+                        $res=mysql_query("select c.*,u.*,r.* from comment_tbl as c,user_tbl as u,racipe_tbl as r where c.email_id=u.email_id and r.racipe_id=c.racipe_id",$con);
+	  while($row=mysql_fetch_array($res,MYSQL_ASSOC))
+                        {
+                          echo '<tr>';
+						  echo '<td>'.$row["comment"].'</td>';
+						  echo '<td>'.$row["racipe_name"].'</td>';
+						  echo '<td>'.$row["user_name"].'</td>';
+						  
+						  		  	$id=$row["comment_id"];
+		
+						    echo "<td><a href='comment_delete.php?id=$id'><input class='btn btn-danger' onclick='return del();' type='button' value='Delete' name='btndel'/></a></td> <br/>";
+				
+						   echo '</tr>';
+                        }
+				?>
+                </tbody>
+                <tfoot>
+                <tr>
+                  
+                </tr>
+                </tfoot>
+              </table>
             </div>
             <!-- /.box-body -->
           </div>
@@ -138,10 +154,9 @@ include 'header.php';
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.8
+      <b> All rights reserved. </b>
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
+    <strong>Copyright @Recipe Express</strong>
   </footer>
 
   <!-- Control Sidebar -->
@@ -264,7 +279,7 @@ include 'header.php';
       <!-- /.tab-pane -->
       <!-- Settings tab content -->
       <div class="tab-pane" id="control-sidebar-settings-tab">
-        
+        <form method="post">
           <h3 class="control-sidebar-heading">General Settings</h3>
 
           <div class="form-group">
@@ -328,7 +343,7 @@ include 'header.php';
             </label>
           </div>
           <!-- /.form-group -->
-        
+        </form>
       </div>
       <!-- /.tab-pane -->
     </div>
@@ -344,6 +359,7 @@ include 'header.php';
 <?php
 	include 'link1.php';
 ?>
+
 <script>
   $(function () {
     $("#example").DataTable();

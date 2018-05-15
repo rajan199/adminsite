@@ -14,7 +14,7 @@ if($_SESSION["emailid"]=="")
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Jay Jalaram Medicine</title>
+  <title>Recipe Express</title>
   <!-- Tell the browser to be responsive to screen width -->
   <?php
   include 'links.php';
@@ -63,15 +63,6 @@ include 'header.php';
           </ul>
         </li>
 
-<li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>Reports</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <?php include 'reportslink.php'; ?>
-        </li>
 
     </section>
     
@@ -94,7 +85,7 @@ include 'header.php';
 
 <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Edit Admin Profile Form</h3>
+              <h3 class="box-title">Change Password Form</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -144,7 +135,7 @@ include 'header.php';
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.3.8
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright  <a href="http://almsaeedstudio.com"></a>.</strong> All rights
     reserved.
   </footer>
 

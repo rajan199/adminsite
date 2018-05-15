@@ -16,13 +16,39 @@ if($_SESSION["emailid"]=="")
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Jay Jalaram Medicine</title>
+  <title>Recipe Express</title>
   <!-- Tell the browser to be responsive to screen width -->
  <?php
   include 'links.php';
   
   ?>
-  
+
+<script>
+
+
+
+function prize(uzip)
+{
+		var numbers=/^[0-9]+$/;
+		var len=uzip.value.length;
+		if(uzip.value.match(numbers))
+		{
+			return true;
+		}
+		else
+		{
+				alert('Product Prize must have numeric characters only');
+				uzip.focus();
+				uzip.value = " ";				
+				
+				return false;
+				
+		}
+}
+
+
+
+</script>  
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -54,16 +80,16 @@ include 'header.php';
           </a>
           <ul class="treeview-menu">
         <li class="active"><a href="userdata.php"><i class="fa fa-circle-o"></i> User Table</a></li>
-            <li class="active"><a href="category.php"><i class="fa fa-circle-o"></i> Category Table</a></li>
-			 <li class="active"><a href="question.php"><i class="fa fa-circle-o"></i> Question Table</a></li>
-			 <li class="active"><a href="data.php"><i class="fa fa-circle-o"></i> Prescription Table</a></li>
-			 <li class="active"><a href="company.php"><i class="fa fa-circle-o"></i> Company Table</a></li>
-			 <li class="active"><a href="favourite.php"><i class="fa fa-circle-o"></i> Favourite Table</a></li>
-			 <li class="active"><a href="feedback.php"><i class="fa fa-circle-o"></i> FeedBack Table</a></li>
+            <li class="active"><a href="recipe.php"><i class="fa fa-circle-o"></i> Recipe Table</a></li>
 			 <li class="active"><a href="order.php"><i class="fa fa-circle-o"></i> Order Table</a></li>
-			 <li class="active"><a href="product.php"><i class="fa fa-circle-o"></i> Product Table</a></li>
+			 <li class="active"><a href="question.php"><i class="fa fa-circle-o"></i> Question Table</a></li>
+			<li class="active"><a href="favourite.php"><i class="fa fa-circle-o"></i> Favourite Table</a></li>
+			 <li class="active"><a href="feedback.php"><i class="fa fa-circle-o"></i> FeedBack Table</a></li>
+			
+		
           </ul>
         </li>
+		
     </section>
     
   </aside>
@@ -85,14 +111,14 @@ include 'header.php';
 
 <div class="box box-primary">
             <div class="box-header with-border">
-              <h1>Add Form of Products</h1>
+              <h1>Add Form of Racipe</h1>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
             <form method="post" action="ins_product.php" role="form" enctype="multipart/form-data">
               <div class="box-body">
                 <div class="form-group">
-                  <label >Enter Product Name</label>
+                  <label >Enter Recipe Name</label>
                   <input type="text" class="form-control" name="txt_name" placeholder="Enter Product Name" style="width: 550px; height: 40px;" required>
                 </div>
 				<div class="form-group">
@@ -100,9 +126,21 @@ include 'header.php';
                   <input type="file" class="form-control" name="txt_img"  style="width: 550px; height: 40px;" required>
                 </div>
 				
+				
 				<div class="form-group">
-                  <label >Enter Product Price</label>
-                  <input type="text" class="form-control" name="txt_pri" placeholder="Enter Product Price" style="width: 550px; height: 40px;" required>
+                  <label >Enter recipe Ingredient</label>
+                  <input type="text" class="form-control" name="txt_ing" placeholder="Enter Ingredient" style="width: 550px; height: 40px;" required>
+                </div>
+				
+					
+				<div class="form-group">
+                  <label >Enter recipe Method</label>
+                  <input type="text" class="form-control" name="txt_method" placeholder="Enter method" style="width: 550px; height: 40px;" required>
+                </div>
+				
+				<div class="form-group">
+                  <label >Enter Recipe Price</label>
+                  <input type="text" class="form-control" onblur="return prize(txt_pri);" name="txt_pri" placeholder="Enter Product Price" style="width: 550px; height: 40px;" required>
                 </div>
 
 			<div class="form-group">
@@ -116,48 +154,6 @@ include 'header.php';
 </select>                 
 				 </div>
 				
-				
-			<div class="form-group">
-                  <label >Select the Category of Product</label>
-
-				<select name="txt_cat" class="form-control" autocomplete="off" style="width: 550px; height: 40px;" required>
-<?php
-				$con=mysql_connect("localhost","root","");
-			  mysql_select_db("medicine",$con);
-			  $res=mysql_query("select * from category_tbl",$con);
-			  
-			  while($row=mysql_fetch_array($res,MYSQL_ASSOC))
-				{
-					echo '<option value="'.$row["category_id"].'"';
-					echo">".$row["category_name"]."</option>";
-				}
-	
-	?>			
-
-
-</select>                 
-				 </div>
-
-			<div class="form-group">
-                  <label >Select the Company of Product</label>
-
-				<select name="txt_com" class="form-control" autocomplete="off" style="width: 550px; height: 40px;" required>
-<?php
-				$con=mysql_connect("localhost","root","");
-			  mysql_select_db("medicine",$con);
-			  $res=mysql_query("select * from company_tbl",$con);
-			  
-			  while($row=mysql_fetch_array($res,MYSQL_ASSOC))
-				{
-					echo '<option value="'.$row["company_id"].'"';
-					echo">".$row["company_name"]."</option>";
-				}
-	
-	?>			
-
-
-</select>                 
-				 </div>
 				
 				 
 				
@@ -190,7 +186,7 @@ include 'header.php';
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.3.8
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright @Recipe Express <a href="http://almsaeedstudio.com"></a>.</strong> All rights
     reserved.
   </footer>
 

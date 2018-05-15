@@ -4,6 +4,18 @@
 			 if(isset($_POST["delete"]))
 			 {
 				 
+				 
+				 if(Empty($_POST["chk"]))
+						  {
+							 echo '<script type="text/javascript">';
+ echo "alert('Please select atleast one record');";
+ echo "window.location = 'data.php';";
+
+ echo "</script>"; 
+
+							  
+						  }
+						  else{
 				 $con=mysql_connect("localhost","root","");
                         mysql_select_db("medicine",$con);
 				 $idArr = $_POST['chk'];
@@ -21,6 +33,6 @@
 
 				 }
 			 }
-			 
+			 }
 			 ?>
 			 

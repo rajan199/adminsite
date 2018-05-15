@@ -14,13 +14,95 @@ if($_SESSION["emailid"]=="")
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Jay Jalaram Medicine</title>
+  <title>Recipe Express</title>
   <!-- Tell the browser to be responsive to screen width -->
   <?php
   include 'links.php';
   
   ?>
   
+  <script>
+  
+  
+  $(document).ready(function(){
+$("#zip1").on('blur',function() {
+    var val = $("#zip1").val();
+	var len= $("#zip1").val().length;
+	if(len < 6){
+	    alert("Zipcode length should be 6");
+    	 $("#zip1").val("");
+        $("#zip1").focus();
+    
+	}
+    else if (parseInt(val) < 0 || isNaN(val)) {
+        alert("Only  numbers are allowed");
+        $("#zip1").val("");
+        $("#zip1").focus();
+    
+	}
+});
+ }); 
+ 
+ 
+ 
+ 
+ function allzip(uzip)
+{
+		var numbers=/^[0-9]+$/;
+		var len=uzip.value.length;
+		if(len<6)
+		{
+				alert('ZIP code must be of length 6');
+				
+			uzip.value = "";
+		}
+		else if(uzip.value.match(numbers))
+		{
+			return true;
+		}
+		else
+		{
+				alert('ZIP code must have numeric characters only');
+				uzip.value = " ";				
+				uzip.focus();
+				
+				return false;
+				
+		}
+}
+
+
+
+
+function allmob(uzip)
+{
+		var numbers=/^[0-9]+$/;
+		var len=uzip.value.length;
+		if(len<10)
+		{
+				alert('Mobile number must be of length 10');
+				uzip.value = " ";				
+				
+		}
+		if(uzip.value.match(numbers))
+		{
+			return true;
+		}
+		else
+		{
+				alert('Mobile number must have numeric characters only');
+				uzip.focus();
+				uzip.value = " ";				
+				
+				return false;
+				
+		}
+}
+
+
+ 
+ 
+  </script>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -63,15 +145,7 @@ include 'header.php';
           </ul>
         </li>
 
-<li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>Reports</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <?php include 'reportslink.php'; ?>
-        </li>
+
 
     </section>
     
@@ -102,7 +176,7 @@ include 'header.php';
 			$eid=$_REQUEST["id"];
 			
 			 $con=mysql_connect("localhost","root","");
-                        mysql_select_db("medicine",$con);
+                        mysql_select_db("racipe_database",$con);
                         $res=mysql_query("select * from user_tbl where email_id='$eid' and type='admin'");
 						while($row=mysql_fetch_array($res,MYSQL_ASSOC))
                         {
@@ -121,7 +195,7 @@ include 'header.php';
 			           
                  <div class="form-group">
                   <label>Edit User Name</label>
-                  <input type="text" class="form-control" name="txt_comid" value="<?php echo $uname;?>">
+                  <input type="text" class="form-control" name="txt_comid" value="<?php echo $uname;?>" required>
                 </div>
 
                 <div class="form-group">
@@ -147,14 +221,14 @@ include 'header.php';
 
 <div class="form-group">
                   <label >Enter Zipcode</label>
-                  <input type="text" class="form-control" maxlength='6' name="txt_zip" placeholder="Enter Zipcode" id="zip1" value="<?php echo $zip;?>" required>
+                  <input type="text" class="form-control" onblur="return allzip(txt_zip);" maxlength='6' name="txt_zip" placeholder="Enter Zipcode" id="zip1" value="<?php echo $zip;?>" required>
                          
          </div>
         
         
         <div class="form-group">
                   <label >Enter Mobile Number</label>
-                  <input type="text" value="<?php echo $mno; ?>" class="form-control" name="txt_mob" maxlength='10' id="test" placeholder="Enter Mobile number" required>
+                  <input type="text" value="<?php echo $mno; ?>" onblur="return allmob(txt_mob);" class="form-control" name="txt_mob" maxlength='10' id="test" placeholder="Enter Mobile number" required>
                          
          </div>
         
@@ -196,7 +270,7 @@ include 'header.php';
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.3.8
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com"></a>.</strong> All rights
     reserved.
   </footer>
 
@@ -258,7 +332,7 @@ include 'header.php';
             </a>
           </li>
         </ul>
-        <!-- /.control-sidebar-menu -->
+        <!-- /.control-sidebar-menu 
 
         <h3 class="control-sidebar-heading">Tasks Progress</h3>
         <ul class="control-sidebar-menu">
@@ -398,7 +472,7 @@ include 'header.php';
 
 <!-- jQuery 2.2.3 -->
 <?php
-	include 'link1.php';
+//	include 'link1.php';
 ?>
 
 <script>

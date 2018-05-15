@@ -16,7 +16,7 @@ if($_SESSION["emailid"]=="")
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Jay Jalaram Medicine</title>
+  <title>Recipe Express</title>
   <!-- Tell the browser to be responsive to screen width -->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -98,15 +98,12 @@ if($_SESSION["emailid"]=="")
           </a>
           <ul class="treeview-menu">
         <li class="active"><a href="userdata.php"><i class="fa fa-circle-o"></i> User Table</a></li>
-            <li class="active"><a href="category.php"><i class="fa fa-circle-o"></i> Category Table</a></li>
+            <li class="active"><a href="recipe.php"><i class="fa fa-circle-o"></i> Recipe Table</a></li>
 			 <li class="active"><a href="question.php"><i class="fa fa-circle-o"></i> Question Table</a></li>
-			 <li class="active"><a href="data.php"><i class="fa fa-circle-o"></i> Prescription Table</a></li>
-			  <li class="active"><a href="company.php"><i class="fa fa-circle-o"></i> Company Table</a></li>
-			  <li class="active"><a href="favourite.php"><i class="fa fa-circle-o"></i> Favourite Table</a></li>
+			 <li class="active"><a href="favourite.php"><i class="fa fa-circle-o"></i> Favourite Table</a></li>
 			  <li class="active"><a href="feedback.php"><i class="fa fa-circle-o"></i> FeedBack Table</a></li>
 			  <li class="active"><a href="order.php"><i class="fa fa-circle-o"></i> Order Table</a></li>
-			  <li class="active"><a href="product.php"><i class="fa fa-circle-o"></i> Product Table</a></li>
-          </ul>
+			       </ul>
 		  
 		 
 		  
@@ -117,21 +114,7 @@ if($_SESSION["emailid"]=="")
 		
 		<ul class="sidebar-menu">
       
-        <li class="treeview active">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>Reports</span>
-                <span class="">
-                  <i class=""></i>
-                </span>
-          </a>
-		  <?php
-		  
-		  include 'reportslink.php';
-		  ?>
-		  
-		 
-		  
-        </li>
+       
 		
 		
 		</ul>
@@ -201,7 +184,7 @@ if($_SESSION["emailid"]=="")
 				<?php 
 				
 				 $con=mysql_connect("localhost","root","");
-                        mysql_select_db("medicine",$con);
+                        mysql_select_db("racipe_database",$con);
 						
 		//				      $date=date("d/m/y");
 			
@@ -239,7 +222,7 @@ if($_SESSION["emailid"]=="")
     <div class="pull-right hidden-xs">
      <b> All rights reserved. </b>
     </div>
-     <strong>Copyright &copy; 2016-2017 Jay Jalaram Medicine</strong>
+     <strong>Copyright @Recipe Express</strong>
   </footer>
  
  

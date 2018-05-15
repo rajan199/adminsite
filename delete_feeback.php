@@ -2,7 +2,7 @@
 
 $mail=$_REQUEST["id"];
 $con=mysql_connect('localhost','root','');
-mysql_select_db('medicine',$con);
+mysql_select_db('racipe_database',$con);
 $res=mysql_query("delete from feedback_tbl where email_id='$mail'",$con);
 
 if($res==1)
@@ -11,7 +11,7 @@ if($res==1)
 }
 else
 {
-	echo "no idea sirji";
+	echo "not deleted";
 }
 
 ?>

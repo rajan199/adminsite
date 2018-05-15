@@ -8,7 +8,7 @@ $status=$_POST["questat"];
 $ans=$_POST["que_ans"];
 
 $con=mysql_connect("localhost","root","");
-mysql_select_db("medicine",$con);
+mysql_select_db("racipe_database",$con);
 $res=mysql_query("update question_tbl set question='$qname',question_status='$status',answer='$ans' where question_id='$id'");
 if($res==1)
 {
@@ -16,6 +16,6 @@ if($res==1)
 }
 else
 {
-	echo "na";
+	echo "not updated";
 }
 ?>

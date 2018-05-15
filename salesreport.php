@@ -16,7 +16,7 @@ if($_SESSION["emailid"]=="")
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Jay Jalaram Medicine</title>
+  <title>Recipe Express</title>
   <!-- Tell the browser to be responsive to screen width -->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -98,10 +98,8 @@ if($_SESSION["emailid"]=="")
           </a>
           <ul class="treeview-menu">
         <li class="active"><a href="userdata.php"><i class="fa fa-circle-o"></i> User Table</a></li>
-            <li class="active"><a href="category.php"><i class="fa fa-circle-o"></i> Category Table</a></li>
+            <li class="active"><a href="recipe.php"><i class="fa fa-circle-o"></i> Recipe Table</a></li>
 			 <li class="active"><a href="question.php"><i class="fa fa-circle-o"></i> Question Table</a></li>
-			 <li class="active"><a href="data.php"><i class="fa fa-circle-o"></i> Prescription Table</a></li>
-			  <li class="active"><a href="company.php"><i class="fa fa-circle-o"></i> Company Table</a></li>
 			  <li class="active"><a href="favourite.php"><i class="fa fa-circle-o"></i> Favourite Table</a></li>
 			  <li class="active"><a href="feedback.php"><i class="fa fa-circle-o"></i> FeedBack Table</a></li>
 			  <li class="active"><a href="order.php"><i class="fa fa-circle-o"></i> Order Table</a></li>
@@ -110,23 +108,7 @@ if($_SESSION["emailid"]=="")
         </li>
 				<ul class="sidebar-menu">
       
-        <li class="treeview active">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>Reports</span>
-                <span class="">
-                  <i class=""></i>
-                </span>
-          </a>
-		  <?php
-		  
-		  include 'reportslink.php';
-		  ?>
-		  
-		 
-		  
-        </li>
-		
-		
+      
 		</ul>
 		
 
@@ -141,7 +123,7 @@ if($_SESSION["emailid"]=="")
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel" style="width: 1089px; background: white; margin-left: 231px; margin-top: 51px;">
                   <div class="x_title">
-                    <h2 align="center"><b>Monthly Sold out Products Report</b></h2>
+                    <h2 align="center"><b>Monthly Sold out Recipes Report</b></h2>
                    <!-- <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -169,8 +151,8 @@ if($_SESSION["emailid"]=="")
                   
 			      <th>Email Id</th>
 				  
-				  <th>Product Name</th>
-				  <th>Product Price</th>
+				  <th>Recipe Name</th>
+				  <th>Recipe Price</th>
 				  <th>Quantity</th>
 				 <th>Address</th>
 				 
@@ -186,7 +168,7 @@ if($_SESSION["emailid"]=="")
 <?php 
 				
 				 $con=mysql_connect("localhost","root","");
-                        mysql_select_db("medicine",$con);
+                        mysql_select_db("racipe_database",$con);
 						
 						      $date=date("d/m/y");
 			
@@ -194,7 +176,7 @@ if($_SESSION["emailid"]=="")
 			$m1=(int)$arr[1];
 			
 						
-                        $res=mysql_query("select u.*,p.*,o.* from user_tbl as u,order_tbl as o,product_tbl as p where p.product_id=o.product_id and u.email_id=o.email_id and o.status='buy' and MONTH(o.order_date)='$m1' order by o.order_id desc ",$con);
+                        $res=mysql_query("select u.*,r.*,o.* from user_tbl as u,order_tbl as o,racipe_tbl as r where r.racipe_id=o.racipe_id and u.email_id=o.email_id and o.status='buy' and MONTH(o.order_date)='$m1' order by o.order_id desc ",$con);
 						$cnt=mysql_num_rows($res);             
 			 while($row=mysql_fetch_array($res,MYSQL_ASSOC))
                         {
@@ -202,8 +184,8 @@ if($_SESSION["emailid"]=="")
 						echo '<tr>';	
 						  echo '<td>'.$row["order_date"].'</td>';
 						  echo '<td>'.$row["email_id"].'</td>';
-						  echo '<td>'.$row["product_name"].'</td>';
-						  echo '<td>'.$row["product_price"].'</td>';
+						  echo '<td>'.$row["racipe_name"].'</td>';
+						  echo '<td>'.$row["racipe_price"].'</td>';
 						  echo '<td>'.$row["quantity"].'</td>';
 							echo '<td>'.$row["ship_address"].'</td>';
 								
@@ -222,7 +204,7 @@ if($_SESSION["emailid"]=="")
     <div class="pull-right hidden-xs">
      <b> All rights reserved. </b>
     </div>
-     <strong>Copyright &copy; 2016-2017 Jay Jalaram Medicine</strong>
+     <strong>Copyright @Recipe Express</strong>
   </footer>
  
  

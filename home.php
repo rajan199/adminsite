@@ -17,7 +17,7 @@ if($_SESSION["emailid"]=="")
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Jay Jalaram Medicine</title>
+  <title>Recipe Express</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -58,9 +58,9 @@ if($_SESSION["emailid"]=="")
     <!-- Logo -->
     <a href="home.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>J</b>JM</span>
+      <span class="logo-mini"><b>R</b>E</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Jay Jalaram</b>Medicine</span>
+      <span class="logo-lg"><b>Recipe</b>Express</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -183,7 +183,7 @@ include 'sidebar.php';
 <?php
 $date=date("d/m/y");
 $con=mysql_connect("localhost","root","");
-mysql_select_db("medicine",$con);
+mysql_select_db("racipe_database",$con);
 $res=mysql_query("select * from order_tbl where order_date='$date' and status='buy'",$con);
 $cnt=mysql_num_rows($res);
 ?>            
@@ -205,7 +205,7 @@ $cnt=mysql_num_rows($res);
 			
 			<?php
 $con=mysql_connect("localhost","root","");
-mysql_select_db("medicine",$con);
+mysql_select_db("racipe_database",$con);
 
 $res2=mysql_query("select * from user_tbl where gender='M' and type='user'",$con);
 
@@ -224,29 +224,6 @@ $cnt2=mysql_num_rows($res2);
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-			
-<?php
-$date1=date("d/m/y");
-
-$con=mysql_connect("localhost","root","");
-mysql_select_db("medicine",$con);
-$res3=mysql_query("select * from user_tbl where join_date='$date1' and type='user'",$con);
-$cnt3=mysql_num_rows($res3);
-?>            
-              <h3><?php echo $cnt3;?></h3>
-
-              <p>Today's User Registrations</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="today_user.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
@@ -255,7 +232,7 @@ $cnt3=mysql_num_rows($res3);
 			
 					<?php
 $con=mysql_connect("localhost","root","");
-mysql_select_db("medicine",$con);
+mysql_select_db("racipe_database",$con);
 $res4=mysql_query("select * from user_tbl where gender='F' and type='user'",$con);
 $cnt4=mysql_num_rows($res4);
 ?>
@@ -284,7 +261,7 @@ $date1=date("d/m/y");
 $arr=explode("/",$date1);
 			$m1=(int)$arr[1];
 $con=mysql_connect("localhost","root","");
-mysql_select_db("medicine",$con);
+mysql_select_db("racipe_database",$con);
 $res3=mysql_query("select * from order_tbl where MONTH(order_date)='$m1' and status='buy'",$con);
 $cnt3=mysql_num_rows($res3);
 ?>            
@@ -302,63 +279,10 @@ $cnt3=mysql_num_rows($res3);
 		
 		
 		        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-lightseagreen" style="background: lightseagreen;">
-            <div class="inner">
-			
-<?php
-$date1=date("d/m/y");
-$arr=explode("/",$date1);
-			$m1=(int)$arr[1];
-$con=mysql_connect("localhost","root","");
-mysql_select_db("medicine",$con);
-$res3=mysql_query("SELECT o.product_id,p.product_name,o.order_date,o.product_price, SUM(o.quantity) AS TotalQuantity
-FROM order_tbl as o,product_tbl as p where p.product_id=o.product_id and MONTH(o.order_date)='$m1' and o.status='buy'
-GROUP BY o.product_id
-ORDER BY SUM(o.quantity) DESC;",$con);
-
-
-$cnt3=mysql_num_rows($res3);
-?>             
-              <h3 style="color: white;"><?php echo $cnt3; ?></h3>
-
-              <h5 style="color: white;">Top Sold Out Products of current month</h5>
-            </div>
-            <div class="icon">
-              <i class="ion ion-bag"></i>
-            </div>
-            <a href="top_sal.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
         <!-- ./col -->
 		
 			        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg" style="background-color: rebeccapurple;">
-            <div class="inner">
-			
-<?php
-$date1=date("d/m/y");
-$arr=explode("/",$date1);
-			$m1=(int)$arr[1];
-$con=mysql_connect("localhost","root","");
-mysql_select_db("medicine",$con);
-$res3=mysql_query("select * from user_tbl where MONTH(join_date)='$m1' and type='user'",$con);
-
-$cnt3=mysql_num_rows($res3);
-?>            
-              <h3 style="color: white;"><?php echo $cnt3;?></h3>
-
-              <p style="color: white;">Monthly registered Users</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="userreport.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
+     
 		
 	
 		
@@ -410,8 +334,8 @@ $cnt3=mysql_num_rows($res3);
                   <tbody>
 <?php 
 				  $con=mysql_connect("localhost","root","");
-                        mysql_select_db("medicine",$con);
-                        $res=mysql_query("select o.*,p.* from order_tbl as o,product_tbl as p where o.product_id=p.product_id and o.order_date='$date' and o.status='buy' order by o.order_id LIMIT 0,$cnt");
+                        mysql_select_db("racipe_database",$con);
+                        $res=mysql_query("select o.*,r.* from order_tbl as o,racipe_tbl as r where o.racipe_id=r.racipe_id and o.order_date='$date' and o.status='buy' order by o.order_id LIMIT 0,$cnt");
 						
 						while($row=mysql_fetch_array($res,MYSQL_ASSOC))
                         {
@@ -419,9 +343,9 @@ $cnt3=mysql_num_rows($res3);
 
 						  echo '<td>'.$row["order_date"].'</td>';
 						  echo '<td>'.$row["quantity"].'</td>';
-						  echo '<td>'.$row["product_name"].'</td>';
+						  echo '<td>'.$row["racipe_name"].'</td>';
 						  echo '<td>'.$row["email_id"].'</td>';
-						  echo '<td>'.$row["product_price"].'</td>';
+						  echo '<td>'.$row["racipe_price"].'</td>';
 						  echo '<td>'.$row["total_price"].'</td>';
                           echo '</tr>';
                         }
@@ -447,7 +371,7 @@ $cnt3=mysql_num_rows($res3);
     <div class="pull-right hidden-xs">
      <b> All rights reserved. </b>
     </div>
-     <strong>Copyright &copy; 2016-2017 Jay Jalaram Medicine</strong>
+     <strong>Copyright @Recipe Express</strong>
   </footer>
 
   <!-- Control Sidebar -->

@@ -11,6 +11,7 @@ if($_SESSION["emailid"]=="")
 ?>
 
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,24 +19,39 @@ if($_SESSION["emailid"]=="")
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Jay Jalaram Medicine</title>
   <!-- Tell the browser to be responsive to screen width -->
-  <?php
+<?php
   include 'links.php';
   
   ?>
-  
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-</head>
+<script type="text/javascript">
+  
+     function del()
+      {
+        return confirm("Are you sure you want to delete this Product?");
+      }
+
+	  function edit()
+      {
+        return confirm("Are you sure you want to Edit this Product?");
+      }
+
+  
+  </script>
+
+  
+  </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
+
 <?php
-
-include 'header.php';
-
+  include 'header.php';
+  
 ?>
   <!-- Left side column. contains the logo and sidebar -->
   
@@ -54,16 +70,17 @@ include 'header.php';
           </a>
           <ul class="treeview-menu">
         <li class="active"><a href="userdata.php"><i class="fa fa-circle-o"></i> User Table</a></li>
-            <li class="active"><a href="category.php"><i class="fa fa-circle-o"></i> Category Table</a></li>
-			 <li class="active"><a href="question.php"><i class="fa fa-circle-o"></i> Question Table</a></li>
-			 <li class="active"><a href="data.php"><i class="fa fa-circle-o"></i> Prescription Table</a></li>
-			 <li class="active"><a href="company.php"><i class="fa fa-circle-o"></i> Company Table</a></li>
-			 <li class="active"><a href="favourite.php"><i class="fa fa-circle-o"></i> Favourite Table</a></li>
-			 <li class="active"><a href="feedback.php"><i class="fa fa-circle-o"></i> FeedBack Table</a></li>
+            <li class="active"><a href="recipe.php"><i class="fa fa-circle-o"></i> Recipe Table</a></li>
 			 <li class="active"><a href="order.php"><i class="fa fa-circle-o"></i> Order Table</a></li>
-			 <li class="active"><a href="product.php"><i class="fa fa-circle-o"></i> Product Table</a></li>
-          </ul>
+			 <li class="active"><a href="question.php"><i class="fa fa-circle-o"></i> Question Table</a></li>
+			  <li class="active"><a href="favourite.php"><i class="fa fa-circle-o"></i> Favourite Table</a></li>
+			  <li class="active"><a href="feedback.php"><i class="fa fa-circle-o"></i> FeedBack Table</a></li>
+			 <li class="active"><a href="comment.php"><i class="fa fa-circle-o"></i> Comment Table</a></li>
+			 
+			    </ul>
         </li>
+		
+        
     </section>
     
   </aside>
@@ -71,7 +88,14 @@ include 'header.php';
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    
+    <section class="content-header">
+      <h1>
+      Recipe Table
+        
+      </h1>
+      
+    </section>
+ 
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -81,53 +105,67 @@ include 'header.php';
            
             <!-- /.box-header -->
             <div class="box-body">
-			
-
-<div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Create Category Form</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form method="post" role="form">
-              <div class="box-body">
-                <div class="form-group">
-                  <label >Enter Catagory Name</label>
-                  <input type="text" class="form-control" name="txt_catname" placeholder="Enter Catagory">
-                </div>
-				<div class="form-group">
-                  <label>Select</label>
-                  <select class="form-control" name="catstat">
-                    <option value="available">Available</option>
-                    <option value="not Available">Not Available</option>
-                  </select>
-                </div>
+			<form method="post" onSubmit="return del();" action="mul_del_product.php">
+              <table id="example" class="table table-bordered table-striped">
+                <a href="product_add.php"><button type="button" class="btn btn-danger
+" data-toggle="tooltip" data-placement="right" title="Create New Product" style="margin-left: 40px;margin-top: 15px;"><span class="glyphicon glyphicon-plus-sign"></button></a>
+<br/><br/>
+				<thead>
+                <tr>
+                  <th>Select</th>
+		  <th>Action</th>
+				
+		<th>Recipe Name</th>
+				  <th>Recipe Image</th>
+				  <th>Recipe Ingredienta</th>
+				  <th>Method</th>
+				  
+				  <th>Racipe Price</th>
+				  <th>Email id</th>
+				  
+				 
+                </tr>
+                </thead>
+                <tbody>
                 
-              </div>
-              <!-- /.box-body -->
-
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary" name="inscat">Insert Category</button>
-              </div>
-			  <?php 
-			  if(isset($_POST["inscat"]))
-			  {
-				  $cname=$_POST["txt_catname"];
-				  $flag=$_POST["catstat"];
-			  $con=mysql_connect("localhost","root","");
-			  mysql_select_db("medicine",$con);
-			  $res=mysql_query("Insert into category_tbl(category_id,category_name,flag) values(NULL,'$cname','$flag')",$con);
-			  
-			  if($res==1)
-			  {
-				  header('location:category.php');
-			  }
-			  }
-			  ?>
-            </form>
-          </div>
-              
-            </div>
+				<?php 
+				 $con=mysql_connect("localhost","root","");
+                        mysql_select_db("racipe_database",$con);
+                        $res=mysql_query("select * from racipe_tbl order by racipe_id desc",$con);
+                        while($row=mysql_fetch_array($res,MYSQL_ASSOC))
+                        {
+                          echo '<tr>';
+						  ?>
+						 <td> <input type="checkbox" class="checkbox"  name="chk[]"  value="<?php echo $row["racipe_id"]; ?>" style="opacity:1;"/></td>
+						 <?php
+		
+						  	$id=$row["racipe_id"];
+		
+				  echo "<td><a href='product_delete.php?id=$id'><input class='btn btn-danger' onclick='return del();' type='button' value='Delete' name='btndel'/></a> <br/>";
+						  echo "<a href='product_edit.php?id=$id'><input class='btn btn-success' onclick='return edit();' type='button' value='View All data' name='btndel'/></a> </td>";
+        
+		echo '<td>'.$row["racipe_name"].'</td>';
+						  echo '<td> <img src="../images/'.$row["racipe_img"].'" style="height: 130px;width: 160px;"'.'</td>';
+						  echo '<td>'.$row["racipe_ingredient"].'</td>';
+						  echo '<td>'.$row["method"].'</td>';
+						    echo '<td>'.$row["racipe_price"].'</td>';
+						
+						  echo '<td>'.$row["email_id"].'</td>';
+                          
+		                
+						  echo '</tr>';
+                        }
+				?>
+                </tbody>
+                <tfoot>
+                <tr>
+                  
+                </tr>
+                </tfoot>
+              </table>
+ <input class="btn btn-danger"  onclick="return del();" type="submit" value="Delete All" name="delete"/>
+                       
+		  </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
@@ -141,10 +179,9 @@ include 'header.php';
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.8
+     <b> All rights reserved. </b>
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
+     <strong>Copyright @Recipe Express</strong>
   </footer>
 
   <!-- Control Sidebar -->
@@ -331,7 +368,7 @@ include 'header.php';
             </label>
           </div>
           <!-- /.form-group -->
-        
+        </form>
       </div>
       <!-- /.tab-pane -->
     </div>
@@ -347,6 +384,7 @@ include 'header.php';
 <?php
 	include 'link1.php';
 ?>
+
 <script>
   $(function () {
     $("#example").DataTable();

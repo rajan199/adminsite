@@ -17,7 +17,7 @@ if($_SESSION["emailid"]=="")
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Jay Jalaram Medicine</title>
+  <title>Recipe Express</title>
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -86,26 +86,18 @@ if($_SESSION["emailid"]=="")
           </a>
           <ul class="treeview-menu">
         <li class="active"><a href="userdata.php"><i class="fa fa-circle-o"></i> User Table</a></li>
-            <li class="active"><a href="category.php"><i class="fa fa-circle-o"></i> Category Table</a></li>
+            <li class="active"><a href="recipe.php"><i class="fa fa-circle-o"></i> Recipe Table</a></li>
+			  <li class="active"><a href="order.php"><i class="fa fa-circle-o"></i> Order Table</a></li>
 			 <li class="active"><a href="question.php"><i class="fa fa-circle-o"></i> Question Table</a></li>
-			 <li class="active"><a href="data.php"><i class="fa fa-circle-o"></i> Prescription Table</a></li>
-			  <li class="active"><a href="company.php"><i class="fa fa-circle-o"></i> Company Table</a></li>
 			  <li class="active"><a href="favourite.php"><i class="fa fa-circle-o"></i> Favourite Table</a></li>
 			  <li class="active"><a href="feedback.php"><i class="fa fa-circle-o"></i> FeedBack Table</a></li>
-			  <li class="active"><a href="order.php"><i class="fa fa-circle-o"></i> Order Table</a></li>
-			  <li class="active"><a href="product.php"><i class="fa fa-circle-o"></i> Product Table</a></li>
-          </ul>
+	 <li class="active"><a href="comment.php"><i class="fa fa-circle-o"></i> Comment Table</a></li>
+				
+
+		</ul>
         </li>
 		
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>Reports</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <?php include 'reportslink.php'; ?>
-        </li>
+      
     </section>
     
   </aside>
@@ -136,7 +128,7 @@ if($_SESSION["emailid"]=="")
                 <tr>
                   <th>Select</th>
 				  <th>Email Id</th>
-				  <th>Description</th>
+				  <th>Feedback</th>
 				  <th>Action</th>
                 </tr>
                 </thead>
@@ -144,7 +136,7 @@ if($_SESSION["emailid"]=="")
                 
 				<?php 
 				 $con=mysql_connect("localhost","root","");
-                        mysql_select_db("medicine",$con);
+                        mysql_select_db("racipe_database",$con);
                         $res=mysql_query("select * from feedback_tbl");
                         while($row=mysql_fetch_array($res,MYSQL_ASSOC))
                         {
@@ -156,7 +148,8 @@ if($_SESSION["emailid"]=="")
 						  echo '</td>';
 						  
 						  echo '<td>'.$row["email_id"].'</td>';
-						  echo '<td>'.$row["description"].'</td>';
+						  echo '<td>'.$row["feedback"].'</td>';
+						  
   echo '<td><a href="delete_feeback.php?id='.$row["email_id"].'"><input class="btn btn-danger" onclick="return del();" type="button" value="Delete" name="btndel"/></a> </td>';						  
                           echo '</tr>';
                         }
@@ -186,7 +179,7 @@ if($_SESSION["emailid"]=="")
     <div class="pull-right hidden-xs">
        <b> All rights reserved. </b>
     </div>
-    <strong>Copyright &copy; 2016-2017 Jay Jalaram Medicine</strong>
+    <strong>Copyright @Recipe Express</strong>
   </footer>
 
   <!-- Control Sidebar -->

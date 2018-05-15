@@ -17,12 +17,40 @@ if($_SESSION["emailid"]=="")
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Jay Jalaram Medicine</title>
+  <title>Recipe Express</title>
   <!-- Tell the browser to be responsive to screen width -->
  <?php
   include 'links.php';
   
   ?>
+  
+  
+  <script>
+
+
+
+function prize(uzip)
+{
+		var numbers=/^[0-9]+$/;
+		var len=uzip.value.length;
+		if(uzip.value.match(numbers))
+		{
+			return true;
+		}
+		else
+		{
+				alert('Product Prize must have numeric characters only');
+				uzip.focus();
+				uzip.value = " ";				
+				
+				return false;
+				
+		}
+}
+
+
+
+</script>  
   
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -55,16 +83,15 @@ include 'header.php';
           </a>
           <ul class="treeview-menu">
         <li class="active"><a href="userdata.php"><i class="fa fa-circle-o"></i> User Table</a></li>
-            <li class="active"><a href="category.php"><i class="fa fa-circle-o"></i> Category Table</a></li>
-			 <li class="active"><a href="question.php"><i class="fa fa-circle-o"></i> Question Table</a></li>
-			 <li class="active"><a href="data.php"><i class="fa fa-circle-o"></i> Prescription Table</a></li>
-			 <li class="active"><a href="company.php"><i class="fa fa-circle-o"></i> Company Table</a></li>
-			 <li class="active"><a href="favourite.php"><i class="fa fa-circle-o"></i> Favourite Table</a></li>
-			 <li class="active"><a href="feedback.php"><i class="fa fa-circle-o"></i> FeedBack Table</a></li>
+            <li class="active"><a href="recipe.php"><i class="fa fa-circle-o"></i> Recipe Table</a></li>
 			 <li class="active"><a href="order.php"><i class="fa fa-circle-o"></i> Order Table</a></li>
-			 <li class="active"><a href="product.php"><i class="fa fa-circle-o"></i> Product Table</a></li>
-          </ul>
+			 <li class="active"><a href="question.php"><i class="fa fa-circle-o"></i> Question Table</a></li>
+			  <li class="active"><a href="favourite.php"><i class="fa fa-circle-o"></i> Favourite Table</a></li>
+			 <li class="active"><a href="feedback.php"><i class="fa fa-circle-o"></i> FeedBack Table</a></li>
+			  </ul>
         </li>
+		
+
     </section>
     
   </aside>
@@ -86,7 +113,7 @@ include 'header.php';
 
 <div class="box box-primary">
             <div class="box-header with-border">
-              <h1>Add Form of Products</h1>
+              <h1>Edit Form of Products</h1>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -97,19 +124,19 @@ include 'header.php';
 	<?php 
 			$id=$_REQUEST["id"];
 			 $con=mysql_connect("localhost","root","");
-                        mysql_select_db("medicine",$con);
-                        $res=mysql_query("select * from product_tbl where product_id='$id'");
+                        mysql_select_db("racipe_database",$con);
+                        $res=mysql_query("select * from racipe_tbl where racipe_id='$id'");
 						while($row=mysql_fetch_array($res,MYSQL_ASSOC))
                         {
 							//$catid=$row["category_id"];
-							$name=$row["product_name"];
-							$img=$row["product_img"];
+							$name=$row["racipe_name"];
+							$img=$row["racipe_img"];
 							$photo=substr($img,9);
  
-							$price=$row["product_price"];
+							$price=$row["racipe_price"];
+							$ing=$row["racipe_ingredient"];
+							$method=$row["method"];
 							$stat=$row["status"];
-							$cat=$row["category_id"];
-							$com=$row["company_id"];
 							
 						}
 			?>
@@ -125,8 +152,10 @@ include 'header.php';
 					$name1=$_POST["txt_name"];
 				  $price1=$_POST["txt_pri"];
 			  $stat1=$_POST["txt_sta"];
-			  $cat1=$_POST["txt_cat"];
-			  $com1=$_POST["txt_com"];
+			  $ing1=$_POST["txt_ing"];
+			  
+			  $method1=$_POST["txt_method"];
+			 
 			  $photo=$img;
 			            if($_FILES["txt_img"]["name"]!="")
                             {
@@ -138,12 +167,12 @@ include 'header.php';
                             }   
 
 						$con=mysql_connect("localhost","root","");
-                        mysql_select_db("medicine",$con);
-                        $res=mysql_query("update product_tbl set product_name='$name1',product_img='$photo',product_price='$price1',status='$stat1',category_id='$cat1',company_id='$com1' where product_id='$id1'",$con);
+                        mysql_select_db("racipe_database",$con);
+                        $res=mysql_query("update racipe_tbl set racipe_name='$name1',racipe_img='$photo',racipe_ingredient='$ing1',method='$method1',racipe_price='$price1',status='$stat1' where racipe_id='$id1'",$con);
 			
             if($res==1)
 			{
-				header('location:product.php');
+				header('location:recipe.php');
 			}
 			
 			
@@ -151,23 +180,37 @@ include 'header.php';
         ?>
     		 <div class="box-body">
                 <div class="form-group">
-                  <label >Product Name</label>
-                  <input type="text" class="form-control" value="<?php echo $name; ?>" name="txt_name" placeholder="Enter Product Name" style="width: 550px; height: 40px;" required>
+                  <label >Racipe Name</label>
+                  <input type="text" class="form-control" value="<?php echo $name; ?>" name="txt_name" placeholder="Enter Recipe Name" style="width: 550px; height: 40px;" required>
                 </div>
 				<div class="form-group">
-                  <label > Image of Product</label>
+                  <label > Image of Racipe</label>
 <img src="<?php echo $img;?>"  class="form-control" style="height: 133px; width: 180px;">
-                 
+
+			   
 				 <input type="file" class="form-control" name="txt_img" value="<?php echo $img; ?>" style="width: 550px; height: 40px;" >
+                </div>
+
+
+				 <div class="form-group">
+                  <label >Racipe Ingredient</label>
+                  <input type="text" class="form-control" value="<?php echo $ing; ?>" name="txt_ing" placeholder="Enter Ingredients" style="width: 550px; height: 40px;" required>
+                </div>
+				
+				
+				
+				 <div class="form-group">
+                  <label >Method</label>
+                  <input type="text" class="form-control" value="<?php echo $method; ?>" name="txt_method" placeholder="Enter Ingredients" style="width: 550px; height: 40px;" required>
                 </div>
 				
 				<div class="form-group">
-                  <label >Product Price</label>
-                  <input type="text" class="form-control" value="<?php echo $price; ?>" name="txt_pri" placeholder="Enter Product Price" style="width: 550px; height: 40px;" required>
+                  <label>Racipe Price</label>
+                  <input type="text" class="form-control" onblur="return prize(txt_pri);" value="<?php echo $price; ?>" name="txt_pri" placeholder="Enter Product Price" style="width: 550px; height: 40px;" required>
                 </div>
 
 			<div class="form-group">
-                  <label >Select the Status of Product</label>
+                  <label >Select the Status of Racipe</label>
 
 				<select name="txt_sta" class="form-control" autocomplete="off" style="width: 550px; height: 40px;" required>
 
@@ -180,56 +223,7 @@ include 'header.php';
 				 </div>
 				
 				
-			<div class="form-group">
-                  <label >Select the Category of Product</label>
-
-				<select name="txt_cat" class="form-control" autocomplete="off" style="width: 550px; height: 40px;" required>
-<?php
-				$con=mysql_connect("localhost","root","");
-			  mysql_select_db("medicine",$con);
-			  $res=mysql_query("select * from category_tbl",$con);
-			  
-			  while($row=mysql_fetch_array($res,MYSQL_ASSOC))
-				{
-				echo '<option value="'.$row["category_id"].'"';
-				if($row["category_id"]==$cat)
-					echo 'selected';
-				echo'>'.$row["category_name"].'</option>';
-				}
-			  
-	?>			
-
-
-</select>                 
-				 </div>
-
-			<div class="form-group">
-                  <label >Select the Company of Product</label>
-
-				<select name="txt_com" class="form-control" autocomplete="off" style="width: 550px; height: 40px;" required>
-<?php
-				$con=mysql_connect("localhost","root","");
-			  mysql_select_db("medicine",$con);
-			  $res=mysql_query("select * from company_tbl",$con);
-			  
-			  
-			  while($row=mysql_fetch_array($res,MYSQL_ASSOC))
-				{
-				echo '<option value="'.$row["company_id"].'"';
-				if($row["company_id"]==$com)
-					echo 'selected';
-				echo'>'.$row["company_name"].'</option>';
-				}
-			  	
-	?>			
-
-
-</select>                 
-				 </div>
-				
-				 
-				
-		
+			
 	
 		        
               </div>
@@ -258,7 +252,7 @@ include 'header.php';
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.3.8
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright @Recipe Express <a href="http://almsaeedstudio.com"> </a>.</strong> All rights
     reserved.
   </footer>
 

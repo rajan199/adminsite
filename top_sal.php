@@ -205,7 +205,7 @@ mysql_select_db("medicine",$con);
 $res3=mysql_query("SELECT o.product_id,p.product_name,o.order_date,o.product_price, SUM(o.quantity) AS TotalQuantity
 FROM order_tbl as o,product_tbl as p where p.product_id=o.product_id and MONTH(o.order_date)='$m1' and o.status='buy'
 GROUP BY o.product_id
-ORDER BY SUM(o.quantity) DESC;",$con);
+ORDER BY SUM(o.quantity) DESC",$con);
 //$cnt3=mysql_num_rows($res3);
       
 

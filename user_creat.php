@@ -418,8 +418,8 @@ include 'header.php';
 			    $date=date("d/m/y");
 
 			  $con=mysql_connect("localhost","root","");
-			  mysql_select_db("medicine",$con);
-			  $res=mysql_query("Insert into user_tbl values('$email','$name','$pass','$add','$city','$zip','$mob','$gen','NULL','admin','true','Null','$date')",$con);
+			  mysql_select_db("racipe_database",$con);
+			  $res=mysql_query("Insert into user_tbl values('$email','$name','$pass','$add','$city','$zip','$mob','$gen','NULL','admin')",$con);
 			  
 			  if($res==1)
 			  {
@@ -427,7 +427,10 @@ include 'header.php';
 			  }
 			  else
 			  {
-				  echo "na thayu";
+				//  echo "na thayu";
+				echo "<script>";
+				echo "alert('Not Working')";
+				echo "</script>";
 			  }
 			  }
 			  ?>
@@ -448,11 +451,11 @@ include 'header.php';
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.8
+      <b>All rights reserved.</b> 
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
-  </footer>
+    
+     <strong>Copyright  @Recipe Express</strong>
+ </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

@@ -1,12 +1,19 @@
-<?php 
+<?php
+
+session_start();
+
+ 
 			  if(isset($_POST["ins_product"]))
 			  {
+				  
+				  $eid=$_SESSION["emailid"];
 				  $name=$_POST["txt_name"];
+				  $ing=$_POST["txt_ing"];
+				  $method=$_POST["txt_method"];
+				  
 				  $price=$_POST["txt_pri"];
 			  $stat=$_POST["txt_sta"];
-			  $cat=$_POST["txt_cat"];
-			  $com=$_POST["txt_com"];
-			 
+			  
     $target_dir = "../images/";
 $target_file = $target_dir . basename($_FILES["txt_img"]["name"]);
 $uploadOk = 1;
@@ -57,14 +64,16 @@ echo "</scipt>";
 
 			 
 			  $con=mysql_connect("localhost","root","");
-			  mysql_select_db("medicine",$con);
-			  $res=mysql_query("Insert into product_tbl values(NULL,'$name','$target_file','$price','$stat','$cat','$com')",$con);
+			  mysql_select_db("racipe_database",$con);
+			  $res=mysql_query("Insert into racipe_tbl values(NULL,'$name','$target_file','$ing','$method','$price','$stat','$eid')",$con);
 			  
-			 	}
-				if($res==1)
+			 	if($res==1)
 				{
-					header('location:product.php');
+					header('location:recipe.php');
 				}
+				
+				}
+				
 }
 			  }
 			  ?>
